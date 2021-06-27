@@ -1,0 +1,26 @@
+<script>
+
+    function computerPlay()
+    {
+        let num = randomNumber();
+
+        switch(num)
+        {
+            case 1:
+                return "Rock";
+            case 2:
+                return "Paper";
+            case 3:
+                return "Scissors";
+            default:
+                console.log("num is not between 1-3 (function computerPlay)");
+        }
+    }
+
+    function randomNumber()
+    {
+        return Math.floor(((Math.random() * 10) % 3) + 1);
+    }
+
+    
+</script>>
