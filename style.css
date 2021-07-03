@@ -2,7 +2,7 @@
     display:flex;
     background-color: #ffea00;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     position: static;
     margin-top: 15%;
 }
