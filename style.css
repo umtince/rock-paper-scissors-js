@@ -2,9 +2,9 @@
     display:flex;
     background-color: #ffea00;
     align-items: center;
-    justify-content: space-between;
-    position: relative;
-    margin-top: 20%;
+    justify-content: space-evenly;
+    position: static;
+    margin-top: 15%;
 }
 button{
     height: 200px;

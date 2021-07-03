@@ -128,4 +128,4 @@ rps[2].addEventListener("click", () => {
 const divYouScore = document.querySelector("#counterYou");
 const divComputerScore = document.querySelector("#counterComputer");
 const commentary = document.querySelector("#commentary");
-commentary.style.cssText = "text-align:center; margin-top:50px; margin-bottom: 0; font-size: 25px"
+commentary.style.cssText = "position: absolute; left: 0; right: 0; text-align: center; font-size: 25px"
