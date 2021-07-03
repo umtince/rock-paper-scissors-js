@@ -62,10 +62,37 @@ function playRound(playerSelection, computerSelection, playerScore, computerScor
         commentary.textContent = `You Lose! ${computerSelectionAdjusted} beats ${playerSelectionAdjusted}`;
         computerScore++;
         divComputerScore.textContent = computerScore;
-        
+
         return [playerScore,computerScore];
     }  
     console.log("exit"); 
+}
+
+function gameOver(whoWon)
+{
+    if(whoWon === 1)
+    {
+        alert("You Won!");
+    }
+    else
+    {
+        alert("Computer Won!");
+    }
+
+    //reloads page when game is over
+    window.location.reload();
+}
+
+function isGameOver()
+{
+    if(playerScore === 5)
+    {
+        gameOver(1);
+    }
+    else if(computerScore === 5)
+    {
+        gameOver(2);
+    }
 }
 
 let playerScore = 0;
@@ -77,19 +104,26 @@ rps[0].addEventListener("click", () => {
     arrayOfScores = playRound("rock",computerPlay(),playerScore,computerScore);
     playerScore = arrayOfScores[0];
     computerScore = arrayOfScores[1];
+
+    isGameOver();
 });
 
 rps[1].addEventListener("click", () => {
     arrayOfScores = playRound("paper",computerPlay(),playerScore,computerScore);
     playerScore = arrayOfScores[0];
     computerScore = arrayOfScores[1];
+
+    isGameOver();
 });
 
 rps[2].addEventListener("click", () => {
     arrayOfScores = playRound("scissors",computerPlay(),playerScore,computerScore);
     playerScore = arrayOfScores[0];
     computerScore = arrayOfScores[1];
+
+    isGameOver();
 });
+
 
 const divYouScore = document.querySelector("#counterYou");
 const divComputerScore = document.querySelector("#counterComputer");
