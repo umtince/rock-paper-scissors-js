@@ -54,14 +54,15 @@ function playRound(playerSelection, computerSelection, playerScore, computerScor
     else if(isWon == 2)
     {
         commentary.textContent = "It's a tie";
-        computerScore++;
-        divComputerScore.textContent = computerScore;
-
+    
         return [playerScore,computerScore];
     }
     else
     {   
         commentary.textContent = `You Lose! ${computerSelectionAdjusted} beats ${playerSelectionAdjusted}`;
+        computerScore++;
+        divComputerScore.textContent = computerScore;
+        
         return [playerScore,computerScore];
     }  
     console.log("exit"); 
