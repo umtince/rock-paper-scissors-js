@@ -1,106 +1,45 @@
-<body></body>
-<script>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="title">
+        <h1>Rock Paper Scissors</h1>
+        <br>
+        <h2>First to 5 Wins!</h2>
+    </div>
+    <div>
+        <div id="you-computer">
+            <h3 id="you-text">You</h3>
+            <h3 id="computer-text">Computer</h3>
+        </div>
+        <div id="results">
+            <h1 id="counterYou">0</h1>
+            <h1 id="counterComputer">0</h1>
+        </div>
+        <div id="commentary"></div>
 
-    function computerPlay()
-    {
-        let num = randomNumber();
+    </div>
+    <div id="choice">
+        <div id="div-rock">
+            <button>
+                <img src="images/rock.png">
+            </button>  
+        </div>
+        <div id="div-paper" class="button">
+            <button>
+                <img src="images/paper.png">
+            </button>
+        </div>
+        <div id="div-scissors" class="button">
+            <button>
+                <img src="images/scissors.png">
+            </button>
+        </div>
+    </div>
+    <div id="link-Github">
+        <img id="github" src="images/GitHub-Mark-32px.png">
+        <a href="https://github.com/umtince/rock-paper-scissors-js">Mehmet Umut İNCEER</a>
+    </div>
+</body>
 
-        switch(num)
-        {
-            case 1:
-                return "Rock";
-            case 2:
-                return "Paper";
-            case 3:
-                return "Scissors";
-            default:
-                console.log("num is not between 1-3 (function computerPlay)");
-        }
-    }
-
-    function randomNumber()
-    {
-        return Math.floor(((Math.random() * 10) % 3) + 1);
-    }
-
-    function playRound(playerSelection, computerSelection)
-    {
-        const playerSelectionAdjusted = playerSelection.toLowerCase();
-        const computerSelectionAdjusted = computerSelection.toLowerCase();
-
-        let isWon;
-
-        if(playerSelectionAdjusted === "rock" && computerSelectionAdjusted === "scissors"
-        || playerSelectionAdjusted === "paper" && computerSelectionAdjusted === "rock"
-        || playerSelectionAdjusted === "scissors" && computerSelectionAdjusted === "paper")
-        {
-            isWon = 1;
-        }
-        else if(playerSelectionAdjusted === computerSelectionAdjusted)
-        {
-            isWon = 2; //tie
-        }
-        else
-        {
-            isWon = 0;
-        }
-
-        if(isWon === 1)
-        {
-            return `You Won! ${playerSelectionAdjusted} beats ${computerSelectionAdjusted}`;
-        }
-        else if(isWon == 2)
-        {
-            return "It's a tie";
-        }
-        else
-        {
-            return `You Lose! ${computerSelectionAdjusted} beats ${playerSelectionAdjusted}`;
-        }   
-    }
-
-    function game()
-    {
-        let scorePlayer = 0,
-            scoreComputer = 0;
-        
-        let returnedString = "";
-        let playerSelection;
-
-        for(let i=0; i<5; i++)
-        {
-            playerSelection = prompt("Choose either one of \"Rock\" \" Paper\" \"Scissors\"");
-            returnedString = playRound(playerSelection,computerPlay());
-
-            console.log(returnedString);
-
-            if(returnedString.search("Won") !== -1)
-            {
-                scorePlayer++;
-            }
-            
-            if(returnedString.search("Lose") !== -1)
-            {
-                scoreComputer++;
-            }
-            
-
-            console.log("Player: " + scorePlayer + "\tComputer: " + scoreComputer);
-        }
-
-        if(scorePlayer > scoreComputer)
-        {
-            console.log("Player Won the game!");
-        }
-        else if(scoreComputer > scorePlayer)
-        {
-            console.log("Computer Won the game!");
-        }
-        else
-        {
-            console.log("It's a tie. Game Over!");
-        }
-    }
-
-    game();
-</script>>
+<script src="app.js"></script>
