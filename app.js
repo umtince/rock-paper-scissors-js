@@ -68,7 +68,7 @@ function isGameOver()
         rps.forEach(element => {
             element.disabled = true;
         })
-        setTimeout(gameOver,200);
+        setTimeout(gameOver,1000);
     }
 }
 
