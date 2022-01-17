@@ -1,6 +1,14 @@
+const divYouScore = document.querySelector("#counterYou");
+const divComputerScore = document.querySelector("#counterComputer");
+const commentary = document.querySelector("#commentary");
+commentary.style.cssText = "position: absolute; left: 0; right: 0; text-align: center; font-size: 25px"
+const rps = document.querySelectorAll("button");
+let playerScore = 0;
+let computerScore = 0;
+
 function computerPlay()
 {
-    let num = randomNumber();
+    let num = Math.floor(((Math.random() * 10) % 3) + 1);
 
     switch(num)
     {
@@ -15,62 +23,31 @@ function computerPlay()
     }
 }
 
-function randomNumber()
+function playRound(playerSelection, computerSelection)
 {
-    return Math.floor(((Math.random() * 10) % 3) + 1);
-}
-
-function playRound(playerSelection, computerSelection, playerScore, computerScore)
-{
-    const playerSelectionAdjusted = playerSelection.toLowerCase();
-    const computerSelectionAdjusted = computerSelection.toLowerCase();
-
-    let isWon;
-
-    if(playerSelectionAdjusted === "rock" && computerSelectionAdjusted === "scissors"
-    || playerSelectionAdjusted === "paper" && computerSelectionAdjusted === "rock"
-    || playerSelectionAdjusted === "scissors" && computerSelectionAdjusted === "paper")
+    if(playerSelection === "Rock" && computerSelection === "Scissors"
+    || playerSelection === "Paper" && computerSelection === "Rock"
+    || playerSelection === "Scissors" && computerSelection === "Paper")
     {
-        isWon = 1;
+        divYouScore.innerText = ++playerScore;
+        commentary.innerText = `You Won! ${playerSelection} beats ${computerSelection}`;
     }
-    else if(playerSelectionAdjusted === computerSelectionAdjusted)
+    else if(playerSelection === computerSelection)
     {
-        isWon = 2; //tie
+        commentary.innerText = "It's a tie";
     }
     else
     {
-        isWon = 0;
+        divComputerScore.innerText = ++computerScore;
+        commentary.innerText = `You Lose! ${computerSelection} beats ${playerSelection}`;
     }
 
-
-    if(isWon === 1)
-    {
-        commentary.textContent = `You Won! ${playerSelectionAdjusted} beats ${computerSelectionAdjusted}`;
-        playerScore++;
-        divYouScore.textContent = playerScore;
-        
-        return [playerScore,computerScore];
-    }
-    else if(isWon == 2)
-    {
-        commentary.textContent = "It's a tie";
-    
-        return [playerScore,computerScore];
-    }
-    else
-    {   
-        commentary.textContent = `You Lose! ${computerSelectionAdjusted} beats ${playerSelectionAdjusted}`;
-        computerScore++;
-        divComputerScore.textContent = computerScore;
-
-        return [playerScore,computerScore];
-    }  
-    console.log("exit"); 
+    isGameOver();
 }
 
-function gameOver(whoWon)
+function gameOver()
 {
-    if(whoWon === 1)
+    if(playerScore > computerScore)
     {
         alert("You Won!");
     }
@@ -85,47 +62,24 @@ function gameOver(whoWon)
 
 function isGameOver()
 {
-    if(playerScore === 5)
+    console.log([playerScore,computerScore])
+    if(playerScore === 5 || computerScore === 5)
     {
-        gameOver(1);
-    }
-    else if(computerScore === 5)
-    {
-        gameOver(2);
+        rps.forEach(element => {
+            element.disabled = true;
+        })
+        setTimeout(gameOver,200);
     }
 }
 
-let playerScore = 0;
-let computerScore = 0;
-let arrayOfScores;
-const rps = document.querySelectorAll("button");
-
 rps[0].addEventListener("click", () => {
-    arrayOfScores = playRound("rock",computerPlay(),playerScore,computerScore);
-    playerScore = arrayOfScores[0];
-    computerScore = arrayOfScores[1];
-
-    isGameOver();
+    playRound("Rock",computerPlay());
 });
 
 rps[1].addEventListener("click", () => {
-    arrayOfScores = playRound("paper",computerPlay(),playerScore,computerScore);
-    playerScore = arrayOfScores[0];
-    computerScore = arrayOfScores[1];
-
-    isGameOver();
+    playRound("Paper",computerPlay());
 });
 
 rps[2].addEventListener("click", () => {
-    arrayOfScores = playRound("scissors",computerPlay(),playerScore,computerScore);
-    playerScore = arrayOfScores[0];
-    computerScore = arrayOfScores[1];
-
-    isGameOver();
+    playRound("Scissors",computerPlay());
 });
-
-
-const divYouScore = document.querySelector("#counterYou");
-const divComputerScore = document.querySelector("#counterComputer");
-const commentary = document.querySelector("#commentary");
-commentary.style.cssText = "position: absolute; left: 0; right: 0; text-align: center; font-size: 25px"
